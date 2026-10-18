@@ -483,4 +483,75 @@ export default function InventoryDashboard() {
               </div>
               <div className="flex justify-end space-x-2 pt-3">
                 <button 
-                  type="button"
+                  type="button" 
+                  onClick={() => setShowAddModal(false)}
+                  className="px-4 py-2 border border-slate-300 rounded-lg text-sm text-slate-600 hover:bg-slate-50"
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="submit" 
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium"
+                >
+                  Save Part
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Stock In / Out Modal */}
+      {modalType && activePart && (
+        <div className="fixed inset-0 bg-slate-900/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl shadow-xl max-w-sm w-full p-6 space-y-4">
+            <h3 className="text-lg font-bold text-slate-900">
+              {modalType === 'IN' ? 'Stock In (Restock)' : 'Stock Out (Issue)'}
+            </h3>
+            <p className="text-xs text-slate-500">
+              Part: <span className="font-semibold text-slate-800">{activePart.name}</span> (Current: {activePart.quantity} {activePart.unit})
+            </p>
+            <form onSubmit={handleStockAdjustment} className="space-y-3">
+              <div>
+                <label className="block text-xs font-semibold uppercase text-slate-600 mb-1">Quantity to {modalType === 'IN' ? 'Add' : 'Deduct'}</label>
+                <input 
+                  type="number" min="1" required
+                  value={txQty}
+                  onChange={e => setTxQty(parseInt(e.target.value) || 1)}
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold uppercase text-slate-600 mb-1">Reason / Reference</label>
+                <input 
+                  type="text"
+                  value={txReason}
+                  onChange={e => setTxReason(e.target.value)}
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm"
+                  placeholder={modalType === 'IN' ? 'Purchase Order # / Supplier' : 'Machine Breakdown / Work Order #'}
+                />
+              </div>
+              <div className="flex justify-end space-x-2 pt-3">
+                <button 
+                  type="button" 
+                  onClick={() => { setModalType(null); setActivePart(null); }}
+                  className="px-4 py-2 border border-slate-300 rounded-lg text-sm text-slate-600 hover:bg-slate-50"
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="submit" 
+                  className={`px-4 py-2 text-white rounded-lg text-sm font-medium ${
+                    modalType === 'IN' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-rose-600 hover:bg-rose-700'
+                  }`}
+                >
+                  Confirm {modalType}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
