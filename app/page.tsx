@@ -299,7 +299,7 @@ export default function InventoryDashboard() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-slate-900">Spare Parts Hub</h1>
-              <p className="text-xs text-slate-500">Inventory & Maintenance Control</p>
+              <p className="text-xs text-slate-500">Sika Teluk Gong Maintenance Inventory Control</p>
             </div>
           </div>
 
@@ -348,6 +348,7 @@ export default function InventoryDashboard() {
             >
               {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Register"}
             </button>
+            <p className="text-xs text-slate-500">Maintained by effendie.ikhwanul@my.sika.com</p>
           </div>
         </div>
       </main>
@@ -389,7 +390,7 @@ export default function InventoryDashboard() {
               </div>
               <div>
                 <h1 className="font-bold text-slate-900 leading-tight">Spare Parts Inventory</h1>
-                <p className="text-xs text-slate-500">Plant Maintenance System</p>
+                <p className="text-xs text-slate-500">Sika Teluk Gong Maintenance System</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
