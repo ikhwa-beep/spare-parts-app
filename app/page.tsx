@@ -139,13 +139,14 @@ export default function InventoryDashboard() {
     return <svg id={id} ref={svgRef} className="max-w-full"></svg>;
   };
 
-  // Barcode Scanner Logic
+// Barcode Scanner Logic
   useEffect(() => {
     if (isScannerOpen && videoRef.current) {
       const codeReader = new BrowserMultiFormatReader();
       codeReaderRef.current = codeReader;
 
-      codeReader.decodeFromVideoDevice(undefined, videoRef.current, (result) => {
+      // Passing null uses the default video input device (camera)
+      codeReader.decodeFromVideoDevice(null, videoRef.current, (result) => {
         if (result) {
           handleScannedBarcode(result.getText());
         }
